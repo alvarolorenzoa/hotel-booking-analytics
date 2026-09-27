@@ -48,7 +48,7 @@ flowchart LR
 | **Load / Model** | Builds a **star schema** in DuckDB, checks referential integrity (0 orphan keys) and exports Parquet for Power BI | `src/load.py`, `sql/01_star_schema.sql` |
 | **Analysis** | 9 business SQL queries (window functions, `RANK`, `LAG` for YoY, Pareto) → [`docs/business_insights.md`](docs/business_insights.md) | `sql/02_business_queries.sql`, `src/analysis.py` |
 | **ML** | Logistic regression (baseline) vs gradient boosting, time-based validation → [`docs/model_report.md`](docs/model_report.md) | `src/model.py` |
-| **BI** | 3-page Power BI report with 15 DAX measures (time intelligence, inactive relationships) | `dashboard/` |
+| **BI** | Power BI report on the star schema with DAX measures (time intelligence, inactive relationships) | `dashboard/` |
 | **CI** | Unit tests for cleaning, validation, schema integrity and SQL run on every push | `tests/`, `.github/workflows/ci.yml` |
 
 ### Star schema
@@ -92,12 +92,15 @@ erDiagram
 
 ## Dashboard (Power BI)
 
-| Executive overview | Cancellation analysis | Markets & seasonality |
-|---|---|---|
-| ![](docs/img/dashboard_overview.png) | ![](docs/img/dashboard_cancellations.png) | ![](docs/img/dashboard_markets.png) |
+| Executive overview | Cancellation analysis |
+|---|---|
+| ![](docs/img/dashboard_overview.png) | ![](docs/img/dashboard_cancellations.png) |
 
+2-page Power BI report built on the star schema (Parquet), with a custom theme
+([`dashboard/hotel_theme.json`](dashboard/hotel_theme.json)). Full report:
+[`PDF`](dashboard/hotel_booking_analytics.pdf) · [`.pbix`](dashboard/hotel_booking_analytics.pbix).
 DAX measures: [`dashboard/measures.dax`](dashboard/measures.dax) — including `Revenue YoY %`
-(`SAMEPERIODLASTYEAR`), `Revenue YTD`, `Revenue at Risk %` and `Bookings by Booking Date`
+(`SAMEPERIODLASTYEAR`), `Revenue at Risk %` and `Bookings by Booking Date`
 (`USERELATIONSHIP` on an inactive relationship).
 
 ## Analysis highlights
