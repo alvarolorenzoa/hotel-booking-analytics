@@ -1,0 +1,62 @@
+{
+  "name": "Hotel Analytics",
+  "dataColors": ["#1F3864", "#E07A1F", "#5B8DB8", "#9AA5B1", "#2E7D5B", "#C0504D", "#7F6BAE", "#D4A017"],
+  "background": "#FFFFFF",
+  "foreground": "#1F2937",
+  "tableAccent": "#1F3864",
+  "good": "#2E7D5B",
+  "neutral": "#D4A017",
+  "bad": "#C0504D",
+  "maximum": "#1F3864",
+  "center": "#9DB4D0",
+  "minimum": "#EEF2F7",
+  "textClasses": {
+    "title": { "fontFace": "Segoe UI Semibold", "fontSize": 12, "color": "#1F2937" },
+    "header": { "fontFace": "Segoe UI Semibold", "fontSize": 12, "color": "#1F2937" },
+    "label": { "fontFace": "Segoe UI", "fontSize": 10, "color": "#4B5563" },
+    "callout": { "fontFace": "Segoe UI Semibold", "fontSize": 26, "color": "#1F3864" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "show": true, "color": { "solid": { "color": "#FFFFFF" } }, "transparency": 0 }],
+        "border": [{ "show": true, "color": { "solid": { "color": "#E5E7EB" } }, "radius": 8 }],
+        "dropShadow": [{ "show": true, "preset": "BottomRight", "transparency": 85 }],
+        "visualHeader": [{ "show": true }],
+        "title": [{ "show": true, "fontFamily": "Segoe UI Semibold", "fontSize": 12, "fontColor": { "solid": { "color": "#1F2937" } } }],
+        "padding": [{ "top": 8, "bottom": 8, "left": 10, "right": 10 }]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#F3F5F9" } }, "transparency": 0 }],
+        "outspace": [{ "color": { "solid": { "color": "#F3F5F9" } }, "transparency": 0 }]
+      }
+    },
+    "lineChart": {
+      "*": {
+        "lineStyles": [{ "strokeWidth": 3, "showMarker": false, "lineChartType": "smooth" }],
+        "legend": [{ "show": true, "position": "Top", "fontSize": 10 }]
+      }
+    },
+    "slicer": {
+      "*": {
+        "border": [{ "show": false }],
+        "dropShadow": [{ "show": false }]
+      }
+    },
+    "textbox": {
+      "*": {
+        "background": [{ "show": false }],
+        "border": [{ "show": false }],
+        "dropShadow": [{ "show": false }]
+      }
+    },
+    "shape": {
+      "*": {
+        "border": [{ "show": false }],
+        "dropShadow": [{ "show": false }]
+      }
+    }
+  }
+}
