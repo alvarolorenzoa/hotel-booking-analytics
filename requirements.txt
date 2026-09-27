@@ -1,0 +1,7 @@
+pandas>=2.2
+duckdb>=1.1
+pyarrow>=16.0
+scikit-learn>=1.5
+matplotlib>=3.8
+pycountry>=24.6
+pytest>=8.0

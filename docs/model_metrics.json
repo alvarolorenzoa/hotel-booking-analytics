@@ -1,0 +1,110 @@
+{
+  "train_rows": 86430,
+  "test_rows": 32778,
+  "test_from": "2017-03-01",
+  "models": {
+    "Logistic Regression (baseline)": {
+      "roc_auc": 0.856,
+      "accuracy": 0.767,
+      "precision": 0.786,
+      "recall": 0.575,
+      "f1": 0.664,
+      "confusion_matrix": [
+        [
+          17600,
+          2051
+        ],
+        [
+          5579,
+          7548
+        ]
+      ]
+    },
+    "Gradient Boosting": {
+      "roc_auc": 0.859,
+      "accuracy": 0.779,
+      "precision": 0.785,
+      "recall": 0.617,
+      "f1": 0.691,
+      "confusion_matrix": [
+        [
+          17429,
+          2222
+        ],
+        [
+          5033,
+          8094
+        ]
+      ]
+    }
+  },
+  "business": {
+    "best_model": "Gradient Boosting",
+    "test_cancellation_rate_pct": 40.0,
+    "lost_revenue_in_test_eur": 6498976.0,
+    "lost_revenue_flagged_eur": 3753208.0,
+    "lost_revenue_flagged_pct": 57.8
+  },
+  "logistic_drivers": [
+    {
+      "feature": "required_car_parking_spaces",
+      "coef": -5.418,
+      "odds_ratio": 0.0
+    },
+    {
+      "feature": "deposit_type_Non Refund",
+      "coef": 2.913,
+      "odds_ratio": 18.42
+    },
+    {
+      "feature": "previous_cancellations",
+      "coef": 2.172,
+      "odds_ratio": 8.77
+    },
+    {
+      "feature": "deposit_type_Refundable",
+      "coef": -1.814,
+      "odds_ratio": 0.16
+    },
+    {
+      "feature": "deposit_type_No Deposit",
+      "coef": -1.698,
+      "odds_ratio": 0.18
+    },
+    {
+      "feature": "country_group_PRT",
+      "coef": 1.643,
+      "odds_ratio": 5.17
+    },
+    {
+      "feature": "distribution_channel_other (infrequent)",
+      "coef": 0.975,
+      "odds_ratio": 2.65
+    },
+    {
+      "feature": "market_segment_Online TA",
+      "coef": 0.942,
+      "odds_ratio": 2.56
+    },
+    {
+      "feature": "distribution_channel_GDS",
+      "coef": -0.802,
+      "odds_ratio": 0.45
+    },
+    {
+      "feature": "country_group_AUT",
+      "coef": -0.782,
+      "odds_ratio": 0.46
+    },
+    {
+      "feature": "market_segment_Offline TA/TO",
+      "coef": -0.761,
+      "odds_ratio": 0.47
+    },
+    {
+      "feature": "country_group_DEU",
+      "coef": -0.637,
+      "odds_ratio": 0.53
+    }
+  ]
+}

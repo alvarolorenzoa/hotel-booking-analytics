@@ -1,0 +1,60 @@
+// =============================================================================
+// DAX measures for the Hotel Booking Analytics dashboard
+// Create them in a dedicated table: Home > Enter data > name it "_Measures"
+// =============================================================================
+
+// ---------------------------------------------------------------- volume
+Bookings = COUNTROWS ( fact_bookings )
+
+Cancelled Bookings =
+CALCULATE ( [Bookings], fact_bookings[is_canceled] = 1 )
+
+Cancellation Rate % =
+DIVIDE ( [Cancelled Bookings], [Bookings] )
+
+Room Nights =
+CALCULATE ( SUM ( fact_bookings[total_nights] ), fact_bookings[is_canceled] = 0 )
+
+Avg Lead Time (days) =
+AVERAGE ( fact_bookings[lead_time] )
+
+// ---------------------------------------------------------------- revenue
+Realised Revenue =
+SUM ( fact_bookings[revenue] )
+
+Lost Revenue =
+SUM ( fact_bookings[lost_revenue] )
+
+Revenue at Risk % =
+DIVIDE ( [Lost Revenue], [Realised Revenue] + [Lost Revenue] )
+
+ADR =
+// Average daily rate of stays that actually happened
+CALCULATE ( AVERAGE ( fact_bookings[adr] ), fact_bookings[is_canceled] = 0 )
+
+// ---------------------------------------------------------------- time intelligence
+// Requires dim_date to be marked as date table (Table tools > Mark as date table > full_date)
+Revenue PY =
+CALCULATE ( [Realised Revenue], SAMEPERIODLASTYEAR ( dim_date[full_date] ) )
+
+Revenue YoY % =
+DIVIDE ( [Realised Revenue] - [Revenue PY], [Revenue PY] )
+
+Revenue YTD =
+TOTALYTD ( [Realised Revenue], dim_date[full_date] )
+
+Bookings by Booking Date =
+// Uses the inactive relationship booking_date_key -> dim_date
+CALCULATE (
+    [Bookings],
+    USERELATIONSHIP ( fact_bookings[booking_date_key], dim_date[date_key] )
+)
+
+// ---------------------------------------------------------------- customers
+Repeat Guest Share % =
+DIVIDE ( CALCULATE ( [Bookings], dim_customer[is_repeated_guest] = 1 ), [Bookings] )
+
+Cancellation Rate vs Avg (pp) =
+// Difference in percentage points vs. the overall rate (ignores the visual's filters on segment)
+[Cancellation Rate %]
+    - CALCULATE ( [Cancellation Rate %], REMOVEFILTERS ( dim_channel ) )
